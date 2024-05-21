@@ -11,10 +11,25 @@ const height = tilesY * tileSize;
 canvas.width = width;
 canvas.height = height;
 
+var snakePos = [
+    [12, 7],
+    [11, 7]
+];
 
 const headImage = document.createElement("img");
 headImage.src = "/assets/head.gif";
 
+const bodyImage = document.createElement("img");
+bodyImage.src = "/assets/body.gif";
+
 headImage.onload = () => {
-    ctx.drawImage(headImage, 0, 0);
+    bodyImage.onload = () => {
+
+        snakePos.forEach(([x, y], idx) => {
+
+            const img = idx? bodyImage: headImage;
+
+            ctx.drawImage(img, x * tileSize, y * tileSize);
+        });
+    };
 };
