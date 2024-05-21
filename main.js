@@ -17,10 +17,10 @@ var snakePos = [
 ];
 
 const headImage = document.createElement("img");
-headImage.src = "/assets/head.gif";
+headImage.src = "assets/head.gif";
 
 const bodyImage = document.createElement("img");
-bodyImage.src = "/assets/body.gif";
+bodyImage.src = "assets/body.gif";
 
 headImage.onload = () => {
     bodyImage.onload = () => {
