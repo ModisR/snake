@@ -12,10 +12,9 @@ canvas.width = width;
 canvas.height = height;
 
 
-ctx.moveTo(0, 0);
-ctx.lineTo(width, height);
+const headImage = document.createElement("img");
+headImage.src = "/assets/head.gif";
 
-ctx.moveTo(0, height);
-ctx.lineTo(width, 0);
-
-ctx.stroke();
+headImage.onload = () => {
+    ctx.drawImage(headImage, 0, 0);
+};
