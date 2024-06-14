@@ -15,11 +15,43 @@ const snakeBody = [
     [12, 9]
 ];
 
-canvas.width = width;
-canvas.height = height;
+const RIGHT = 0;
+const DOWN = 1;
+const LEFT = 2;
+const UP = 3;
 
-ctx.fillStyle = "green";
+const snakeDir = LEFT;
 
-snakeBody.forEach(([x, y]) => {
-    ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-});
+function canvasReset() {
+    canvas.width = width;
+    canvas.height = height;
+}
+
+function snakeDraw() {
+    ctx.fillStyle = "green";
+
+    snakeBody.forEach(([x, y]) => {
+        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+    });
+}
+
+function snakeMove(){
+    const [x, y] = snakeBody[0];
+    let snakeHead;
+    switch(snakeDir){
+        case RIGHT: snakeHead = [x + 1, y]; break;
+        case DOWN: snakeHead = [x + 1, y + 1]; break;
+        case LEFT: snakeHead = [x - 1, y]; break;
+        case UP: snakeHead = [x, y - 1]; break;
+    }
+    snakeBody.pop();
+    snakeBody.unshift(snakeHead);
+}
+
+function runFrame() {
+    canvasReset();
+    snakeDraw();
+    snakeMove();
+}
+
+setInterval(runFrame, 1000);
