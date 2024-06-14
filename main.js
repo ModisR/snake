@@ -15,12 +15,12 @@ const snakeBody = [
     [12, 9]
 ];
 
-const RIGHT = 0;
-const DOWN = 1;
-const LEFT = 2;
-const UP = 3;
+const EAST = 0;
+const SOUTH = 1;
+const WEST = 2;
+const NORTH = 3;
 
-const snakeDir = LEFT;
+const snakeDir = WEST;
 
 function canvasReset() {
     canvas.width = width;
@@ -39,10 +39,10 @@ function snakeMove(){
     const [x, y] = snakeBody[0];
     let snakeHead;
     switch(snakeDir){
-        case RIGHT: snakeHead = [x + 1, y]; break;
-        case DOWN: snakeHead = [x + 1, y + 1]; break;
-        case LEFT: snakeHead = [x - 1, y]; break;
-        case UP: snakeHead = [x, y - 1]; break;
+        case EAST: snakeHead = [(x + 1) % tilesX, y]; break;
+        case SOUTH: snakeHead = [x, (y + 1) % tilesY]; break;
+        case WEST: snakeHead = [(x + tilesX - 1) % tilesX, y]; break;
+        case NORTH: snakeHead = [x, (y + tilesY - 1) % tilesY]; break;
     }
     snakeBody.pop();
     snakeBody.unshift(snakeHead);
@@ -54,4 +54,4 @@ function runFrame() {
     snakeMove();
 }
 
-setInterval(runFrame, 1000);
+setInterval(runFrame, 500);
