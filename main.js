@@ -20,7 +20,7 @@ const SOUTH = 1;
 const WEST = 2;
 const NORTH = 3;
 
-const snakeDir = WEST;
+let snakeDir = WEST;
 
 function canvasReset() {
     canvas.width = width;
@@ -48,10 +48,20 @@ function snakeMove(){
     snakeBody.unshift(snakeHead);
 }
 
+function snakeTurn(event) {
+    switch(event.key) {
+        case 'ArrowLeft': snakeDir = (snakeDir + 3) % 4; break;
+        case 'ArrowRight': snakeDir = (snakeDir + 1) % 4; break;
+    }
+    event.preventDefault();
+}
+
+document.addEventListener('keydown', snakeTurn);
+
 function runFrame() {
     canvasReset();
-    snakeDraw();
     snakeMove();
+    snakeDraw();
 }
 
 setInterval(runFrame, 500);
