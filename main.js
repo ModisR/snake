@@ -2,34 +2,24 @@ const canvas = document.getElementsByTagName('canvas')[0];
 const ctx = canvas.getContext('2d');
 
 const tileSize = 32;
-const tilesX = 24;
-const tilesY = 16;
+const tilesX = 20;
+const tilesY = 20;
 
 const width = tilesX * tileSize;
 const height = tilesY * tileSize;
 
+const snakeBody = [
+    [9, 9],
+    [10, 9],
+    [11, 9],
+    [12, 9]
+];
+
 canvas.width = width;
 canvas.height = height;
 
-var snakePos = [
-    [12, 7],
-    [11, 7]
-];
+ctx.fillStyle = "green";
 
-const headImage = document.createElement("img");
-headImage.src = "assets/head.gif";
-
-const bodyImage = document.createElement("img");
-bodyImage.src = "assets/body.gif";
-
-headImage.onload = () => {
-    bodyImage.onload = () => {
-
-        snakePos.forEach(([x, y], idx) => {
-
-            const img = idx? bodyImage: headImage;
-
-            ctx.drawImage(img, x * tileSize, y * tileSize);
-        });
-    };
-};
+snakeBody.forEach(([x, y]) => {
+    ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+});
